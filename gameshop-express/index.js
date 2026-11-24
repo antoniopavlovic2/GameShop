@@ -1,6 +1,5 @@
 import express from 'express';
-import igre from './data/games.js'
-import narudzbe from './data/games.js'
+import {igre,narudzbe} from './data/games.js'
 
 const app = express();
 app.use(express.json());
@@ -36,5 +35,11 @@ app.get("/about", (req,res) => {
 });
 
 app.get("/igre", (req,res) => {
-    return res.status(200).json(igre);
+    if(igre.length>0)
+        return res.status(200).json(igre);
+
+    else
+        return res.status(404).json({
+            "message": "Nema dostupnih videoigara."
+    })
 });

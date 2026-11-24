@@ -63,4 +63,4 @@ const igre = [
 
 const narudzbe = [];
 
-export default { igre, narudzbe};
+export { igre, narudzbe};
