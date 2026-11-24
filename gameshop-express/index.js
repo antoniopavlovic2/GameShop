@@ -43,3 +43,13 @@ app.get("/igre", (req,res) => {
             "message": "Nema dostupnih videoigara."
     })
 });
+
+app.get("/igre/dostupne", (req,res) => {
+    const dostupni = igre.filter(igra => igra.dostupno === true);
+    return res.status(200).json(dostupni);
+});
+
+app.get("/igre/nedostupne", (req,res) => {
+    const nedostupni = igre.filter(igra => igra.dostupno === false);
+    return res.status(200).json(nedostupni);
+});
