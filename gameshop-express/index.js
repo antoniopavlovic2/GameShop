@@ -53,3 +53,22 @@ app.get("/igre/nedostupne", (req,res) => {
     const nedostupni = igre.filter(igra => igra.dostupno === false);
     return res.status(200).json(nedostupni);
 });
+
+app.get("/igre/:id", (req,res) => {
+    const id = Number(req.params.id);
+    const trazena_igra = igre.find( n => n.id === id);
+
+    if(!Number.isInteger(id) || id < 1){
+        return res.status(400).json({
+            "message": "ID mora biti cijeli pozitivan broj."
+        })
+    }
+    if(trazena_igra){
+        res.status(200).json(trazena_igra);
+    }
+    else{
+        return res.status(404).json({
+            "message": "Videoigra nije pronađena."
+        })
+    }
+});
