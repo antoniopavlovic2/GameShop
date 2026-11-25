@@ -72,3 +72,16 @@ app.get("/igre/:id", (req,res) => {
         })
     }
 });
+
+app.get("/igre/naziv/:naziv", (req,res) => {
+    const naziv = req.params.naziv;
+    const igra_naziv = igre.find(n => n.naziv.toLowerCase() === naziv.toLowerCase());
+
+    if(!igra_naziv){
+        return res.status(404).json({
+            "message": "Videoigra nije pronađena."
+        });
+    }
+    else    
+        return res.status(200).json(igra_naziv);
+});
